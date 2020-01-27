@@ -37,7 +37,7 @@
                                     </div>
                                     <div class="col-8">
                                         <div class="card-body">
-                                            <input class="editMedicoId" type="hidden" name="medico_id" value="{{$cita->id}}">
+                                            <input class="editMedicoId" type="hidden" name="medico_id" value="{{$cita->medico_id}}">
                                             <h5 class="card-title editMedicoNombre">{{$cita->medico}}</h5>
                                             <p class="card-text mb-0 editMedicoEspecialidad">{{$cita->especialidad}}</p>
                                             <p class="card-text editMedicoCiudad"><small class="text-muted">{{$cita->ciudad}}</small></p>

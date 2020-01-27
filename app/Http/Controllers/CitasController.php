@@ -16,9 +16,9 @@ class CitasController extends Controller
      */
     public function index()
     {
-        $data['citas'] = Cita::join('users', 'users.id', '=', 'citas.user_id')
+        $data['citas'] = Cita::select('citas.id', 'citas.fecha', 'users.name as usuario', 'medicos.nombre as medico', 'medicos.especialidad', 'medicos.ciudad')
+            ->join('users', 'users.id', '=', 'citas.user_id')
             ->join('medicos', 'medicos.id', '=', 'citas.medico_id')
-            ->select('citas.id', 'citas.fecha', 'users.name as usuario', 'medicos.nombre as medico', 'medicos.especialidad', 'medicos.ciudad')
             ->where('estado', 1)
             ->get();
         $data['medicos'] = Medico::get();
@@ -27,9 +27,9 @@ class CitasController extends Controller
 
     public function fetch()
     {
-        $data['citas'] = Cita::join('users', 'users.id', '=', 'citas.user_id')
+        $data['citas'] = Cita::select('citas.id', 'citas.fecha', 'users.name as usuario', 'medicos.nombre as medico', 'medicos.especialidad', 'medicos.ciudad')
+            ->join('users', 'users.id', '=', 'citas.user_id')
             ->join('medicos', 'medicos.id', '=', 'citas.medico_id')
-            ->select('citas.id', 'citas.fecha', 'users.name as usuario', 'medicos.nombre as medico', 'medicos.especialidad', 'medicos.ciudad')
             ->where('estado', 1)
             ->get();
         return response()->json($data);
@@ -84,9 +84,9 @@ class CitasController extends Controller
      */
     public function edit($cita)
     {
-        $data['cita'] = Cita::join('users', 'users.id', '=', 'citas.user_id')
+        $data['cita'] = Cita::select('citas.id', 'citas.fecha', 'user_id', 'users.name as usuario', 'medicos.id as medico_id', 'medicos.nombre as medico', 'medicos.especialidad', 'medicos.ciudad')
+            ->join('users', 'users.id', '=', 'citas.user_id')
             ->join('medicos', 'medicos.id', '=', 'citas.medico_id')
-            ->select('citas.id', 'citas.fecha', 'user_id', 'users.name as usuario', 'medicos.nombre as medico', 'medicos.especialidad', 'medicos.ciudad')
             ->where('citas.id', $cita)
             ->where('estado', 1)
             ->get()
